@@ -2,34 +2,31 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../App';
 import { ShoppingCart } from 'lucide-react';
-import yuzuImg from '@assets/generated_images/yuzu_splash.png';
-import berryImg from '@assets/generated_images/berry_bliss.png';
-import cucumberImg from '@assets/generated_images/cucumber_crisp.png';
 
 const flavors = [
   {
     id: 'yuzu',
-    name: 'Yuzu Splash',
-    color: '#FFE600',
-    notes: 'Zesty yuzu, lemongrass & a hint of ginger. Sunshine in a can.',
-    image: yuzuImg,
-    borderColor: 'border-[#FFE600]'
+    name: 'Yuzu Citrus',
+    color: '#F2C94C',
+    price: '$2.99',
+    image: 'https://images.unsplash.com/photo-1576020799627-aeac74d58064?w=900&q=90&fit=crop',
+    size: 'large' // Spans left column on desktop
   },
   {
     id: 'berry',
-    name: 'Berry Bliss',
-    color: '#FF2E93',
-    notes: 'Wild blackberry, hibiscus & rose. A ruby rush with every sip.',
-    image: berryImg,
-    borderColor: 'border-[#FF2E93]'
+    name: 'Wild Berry',
+    color: '#C9184A',
+    price: '$2.99',
+    image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=90&fit=crop',
+    size: 'small' // Top right
   },
   {
     id: 'cucumber',
-    name: 'Cucumber Crisp',
-    color: '#00F0A8',
-    notes: 'Garden cucumber, cool mint & lime zest. Clarity in a can.',
-    image: cucumberImg,
-    borderColor: 'border-[#00F0A8]'
+    name: 'Cucumber Mint',
+    color: '#2DC653',
+    price: '$2.99',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=90&fit=crop', // fallback cucumber image
+    size: 'small' // Bottom right
   }
 ];
 
@@ -37,68 +34,120 @@ export default function FlavorShowcase() {
   const { setCartCount, setActiveFlavor } = useAppContext();
 
   return (
-    <section id="flavors" className="py-32 min-h-screen relative z-10">
+    <section id="flavors" className="py-24 min-h-screen relative z-10 bg-[#0C0C0C]">
       <div className="container mx-auto px-6">
         
-        <motion.div 
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-white">
-            Find Your <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFE600] via-[#FF2E93] to-[#00F0A8]">Flavor</span>
+        <div className="mb-12 border-b border-border pb-6 flex items-baseline justify-between">
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
+            The Collection
           </h2>
-        </motion.div>
+          <span className="text-sm font-bold uppercase tracking-widest text-gray-500">03 Flavors</span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {flavors.map((flavor, i) => (
-            <motion.div
-              key={flavor.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.15 }}
-              onMouseEnter={() => setActiveFlavor(flavor.id)}
-              onMouseLeave={() => setActiveFlavor(null)}
-              className={`bg-[#0F0F0F] border-[3px] ${flavor.borderColor} flex flex-col shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-4 transition-all duration-300 group overflow-hidden`}
-            >
-              <div className="w-full aspect-[3/4] relative overflow-hidden border-b-[3px] border-inherit">
-                <img 
-                  src={flavor.image} 
-                  alt={flavor.name} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
-                />
-                <div 
-                  className="absolute inset-0 transition-opacity duration-500 opacity-60 group-hover:opacity-0 mix-blend-multiply pointer-events-none"
-                  style={{ backgroundColor: flavor.color }}
-                />
+        <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-[80vh]">
+          
+          {/* Large Card (Left) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex-[3] relative group overflow-hidden border border-border hover:border-[#F2C94C] transition-colors duration-500 min-h-[400px]"
+            onMouseEnter={() => setActiveFlavor('yuzu')}
+            onMouseLeave={() => setActiveFlavor(null)}
+          >
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <img 
+                src={flavors[0].image} 
+                alt={flavors[0].name} 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Hover Tint Overlay */}
+            <div 
+              className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]"
+              style={{ backgroundColor: `${flavors[0].color}40` }} // 25% opacity
+            />
+
+            {/* Hover Text */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 ease-[0.16,1,0.3,1] pointer-events-none">
+              <h3 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-white drop-shadow-xl">
+                {flavors[0].name}
+              </h3>
+            </div>
+
+            {/* Bottom Bar (Always visible) */}
+            <div className="absolute bottom-0 left-0 right-0 bg-[#0C0C0C]/90 backdrop-blur-md border-t border-white/10 p-6 flex items-center justify-between z-10">
+              <div>
+                <h4 className="text-xl font-bold uppercase tracking-wide text-white">{flavors[0].name}</h4>
+                <span className="text-gray-400 font-medium text-sm">{flavors[0].price} / can</span>
               </div>
+              <button 
+                onClick={() => setCartCount(c => c + 1)}
+                className="flex items-center justify-center w-12 h-12 bg-white text-black hover:bg-[#F2C94C] transition-colors"
+                aria-label={`Add ${flavors[0].name} to cart`}
+              >
+                <ShoppingCart className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
 
-              <div className="p-8 flex flex-col flex-grow justify-between bg-black">
-                <div>
-                  <h3 className="text-3xl font-bold uppercase tracking-wide text-white mb-2" style={{ color: flavor.color }}>
+          {/* Small Cards Column (Right) */}
+          <div className="flex-[2] flex flex-col gap-6">
+            {flavors.slice(1).map((flavor, i) => (
+              <motion.div
+                key={flavor.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.2 + (i * 0.2) }}
+                className="flex-1 relative group overflow-hidden border border-border hover:border-white transition-colors duration-500 min-h-[300px]"
+                style={{ '--hover-border': flavor.color } as any}
+                onMouseEnter={() => setActiveFlavor(flavor.id)}
+                onMouseLeave={() => setActiveFlavor(null)}
+              >
+                <style>{`.group:hover { border-color: ${flavor.color} !important; }`}</style>
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img 
+                    src={flavor.image} 
+                    alt={flavor.name} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Hover Tint Overlay */}
+                <div 
+                  className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]"
+                  style={{ backgroundColor: `${flavor.color}40` }}
+                />
+
+                {/* Hover Text */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 ease-[0.16,1,0.3,1] pointer-events-none p-4 text-center">
+                  <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-white drop-shadow-xl">
                     {flavor.name}
                   </h3>
-                  <p className="text-gray-400 font-medium min-h-[3rem] mb-6">
-                    {flavor.notes}
-                  </p>
                 </div>
-                
-                <div className="flex items-center justify-between border-t-[2px] border-border pt-6">
-                  <span className="text-2xl font-bold text-white">$2.99 <span className="text-sm text-gray-500">/ can</span></span>
+
+                {/* Bottom Bar (Always visible) */}
+                <div className="absolute bottom-0 left-0 right-0 bg-[#0C0C0C]/90 backdrop-blur-md border-t border-white/10 p-5 flex items-center justify-between z-10">
+                  <div>
+                    <h4 className="text-lg font-bold uppercase tracking-wide text-white">{flavor.name}</h4>
+                    <span className="text-gray-400 font-medium text-sm">{flavor.price} / can</span>
+                  </div>
                   <button 
                     onClick={() => setCartCount(c => c + 1)}
-                    className="flex items-center justify-center w-12 h-12 rounded-none border-2 border-transparent text-black font-bold transition-all hover:scale-110 active:scale-95"
-                    style={{ backgroundColor: flavor.color }}
+                    className="flex items-center justify-center w-10 h-10 bg-white text-black hover:bg-black hover:text-white transition-colors border border-transparent hover:border-white"
                     aria-label={`Add ${flavor.name} to cart`}
                   >
-                    <ShoppingCart className="w-5 h-5" />
+                    <ShoppingCart className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

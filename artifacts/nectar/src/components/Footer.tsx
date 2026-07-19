@@ -17,33 +17,33 @@ export default function Footer() {
   };
 
   return (
-    <footer id="shop" className="bg-[#050505] pt-32 pb-12 border-t-[3px] border-border text-white relative z-20">
+    <footer id="shop" className="bg-[#0C0C0C] pt-24 pb-12 border-t border-border text-white relative z-20">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           
-          <div className="w-full max-w-xl">
-            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6">
-              Join The <br/><span className="text-primary">Source</span>
+          <div className="w-full max-w-lg">
+            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-6 text-white">
+              Stay in the Loop.
             </h2>
-            <p className="text-gray-400 font-medium mb-8 text-xl">
-              Drop your email to get early access to new flavors and exclusive merch. No spam, just the good stuff.
+            <p className="text-gray-400 mb-8 text-lg font-medium leading-relaxed">
+              Early access to new flavors and exclusive drops. No noise, just the good stuff.
             </p>
 
             <form onSubmit={handleSubmit} className="relative w-full">
               <div className="flex w-full">
                 <input 
                   type="text"
-                  placeholder="ENTER YOUR EMAIL"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
                     if (status === 'error') setStatus('idle');
                   }}
-                  className={`flex-1 bg-black border-[3px] ${status === 'error' ? 'border-[#FF2E93]' : 'border-border'} text-white font-bold p-4 focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600 rounded-none uppercase`}
+                  className={`flex-1 bg-transparent border-b ${status === 'error' ? 'border-[#C9184A]' : 'border-gray-600'} text-white p-3 px-0 focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600 rounded-none text-sm`}
                 />
                 <button 
                   type="submit"
-                  className="bg-primary text-black font-bold uppercase tracking-wide px-8 border-[3px] border-l-0 border-primary hover:bg-[#E6CF00] transition-colors"
+                  className="bg-transparent text-primary text-sm font-bold uppercase tracking-wider px-6 border-b border-gray-600 hover:border-primary transition-colors"
                 >
                   Subscribe
                 </button>
@@ -52,20 +52,20 @@ export default function Footer() {
               <AnimatePresence>
                 {status === 'error' && (
                   <motion.p 
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, y: -5 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="absolute -bottom-8 left-0 text-[#FF2E93] font-bold text-sm uppercase"
+                    className="absolute -bottom-6 left-0 text-[#C9184A] text-xs font-medium"
                   >
                     Please enter a valid email address.
                   </motion.p>
                 )}
                 {status === 'success' && (
                   <motion.p 
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, y: -5 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="absolute -bottom-8 left-0 text-[#00F0A8] font-bold text-sm uppercase"
+                    className="absolute -bottom-6 left-0 text-[#2DC653] text-xs font-medium"
                   >
                     Welcome to the source. You're in.
                   </motion.p>
@@ -74,29 +74,29 @@ export default function Footer() {
             </form>
           </div>
 
-          <div className="flex flex-col items-start md:items-end gap-8 mt-4 md:mt-0">
-            <h3 className="text-3xl font-bold uppercase tracking-tighter text-gray-500">Nectar</h3>
+          <div className="flex flex-col items-start md:items-end gap-6">
+            <div className="text-2xl font-bold tracking-tighter text-white mb-2">NECTAR</div>
             <div className="flex gap-4">
-              <a href="#" className="w-12 h-12 bg-black border-[3px] border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                <Instagram className="w-6 h-6" />
+              <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:border-primary hover:text-primary transition-colors text-gray-400">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-12 h-12 bg-black border-[3px] border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                <Twitter className="w-6 h-6" />
+              <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:border-primary hover:text-primary transition-colors text-gray-400">
+                <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="w-12 h-12 bg-black border-[3px] border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                <MessageCircle className="w-6 h-6" /> {/* Placeholder for TikTok/Discord */}
+              <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:border-primary hover:text-primary transition-colors text-gray-400">
+                <MessageCircle className="w-4 h-4" />
               </a>
             </div>
           </div>
           
         </div>
 
-        <div className="border-t-[3px] border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-bold uppercase text-sm text-gray-600 tracking-wider">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-gray-500 uppercase tracking-widest">
+          <p>© 2025 Nectar</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">Privacy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms</a>
           </div>
-          <p>© 2025 Nectar · Crafted with care.</p>
         </div>
       </div>
     </footer>

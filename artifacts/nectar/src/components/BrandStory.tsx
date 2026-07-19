@@ -1,30 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import waterDropsImg from '@assets/generated_images/water_droplets.png';
-import citrusImg from '@assets/generated_images/citrus_cut.png';
-import aluminumImg from '@assets/generated_images/aluminum_texture.png';
-import botanicalImg from '@assets/generated_images/botanicals.png';
 
 const images = [
-  waterDropsImg,
-  citrusImg,
-  aluminumImg,
-  botanicalImg
+  "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&q=90&fit=crop", // Water
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=90&fit=crop", // Citrus
+  "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=600&q=90&fit=crop", // Botanicals
+  "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=90&fit=crop"  // Aluminum
 ];
 
 export default function BrandStory() {
   return (
-    <section id="our-story" className="py-32 w-full bg-[#0A0A0A] relative z-20 border-t-[3px] border-border overflow-hidden">
+    <section id="our-story" className="py-24 md:py-32 w-full bg-[#0C0C0C] relative z-20 border-t border-border overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <div className="flex flex-col lg:flex-row gap-16 md:gap-24 items-center">
           
           {/* Text Content */}
-          <div className="flex-1 w-full lg:pr-12">
+          <div className="flex-1 w-full lg:pr-8">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-white mb-10 leading-[0.9]"
+              className="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white mb-10 leading-[1.05]"
             >
               Crafted <br/> From The <br/> Source.
             </motion.h2>
@@ -34,9 +30,9 @@ export default function BrandStory() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={{
-                visible: { transition: { staggerChildren: 0.2 } }
+                visible: { transition: { staggerChildren: 0.15 } }
               }}
-              className="space-y-6 text-xl font-medium text-gray-400"
+              className="space-y-6 text-lg md:text-xl text-gray-400 font-medium"
             >
               <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}}>
                 We didn't set out to make another seltzer. We set out to redefine what refreshment feels like. Nectar is born from a precise, 7-step micro-filtration process that strips away impurities, leaving behind water that is shockingly crisp.
@@ -44,32 +40,67 @@ export default function BrandStory() {
               <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}}>
                 Then, we infuse. No natural flavors. No "essences." We use whole organic botanicals and fruit extracts sourced from farms we actually visit. The color you see is the color of the earth.
               </motion.p>
-              <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}} className="text-white border-l-4 border-primary pl-6 py-2 mt-8 font-bold text-2xl uppercase tracking-wide">
-                Zero compromises. Just pure, electric flavor.
-              </motion.p>
+              <motion.blockquote 
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}} 
+                className="border-l-4 border-primary pl-6 py-2 mt-10"
+              >
+                <p className="text-white font-bold text-2xl md:text-3xl uppercase tracking-wide leading-tight">
+                  Zero compromises. <br className="hidden md:block"/> Just pure, electric flavor.
+                </p>
+              </motion.blockquote>
             </motion.div>
           </div>
 
-          {/* Visual Grid */}
+          {/* Visual Grid (Staggered Editorial) */}
           <div className="flex-1 w-full">
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
-              {images.map((src, i) => (
+            <div className="grid grid-cols-2 gap-4 md:gap-6 items-center">
+              
+              <div className="space-y-4 md:space-y-6">
+                {/* Tall aspect */}
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: i * 0.15, duration: 0.6 }}
-                  className={`relative w-full aspect-square border-2 border-border overflow-hidden bg-black ${i === 1 ? 'mt-8 md:mt-12' : ''} ${i === 2 ? '-mt-8 md:-mt-12' : ''}`}
+                  transition={{ duration: 0.6 }}
+                  className="w-full aspect-[2/3] overflow-hidden"
                 >
-                  <img 
-                    src={src} 
-                    alt="Brand imagery" 
-                    className="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal hover:scale-110 hover:opacity-100 transition-all duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                  <img src={images[0]} alt="Crisp Water" className="w-full h-full object-cover" />
                 </motion.div>
-              ))}
+                {/* Square aspect */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="w-full aspect-square overflow-hidden"
+                >
+                  <img src={images[2]} alt="Botanicals" className="w-full h-full object-cover" />
+                </motion.div>
+              </div>
+
+              <div className="space-y-4 md:space-y-6 pt-12 md:pt-24">
+                {/* Short aspect */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="w-full aspect-[4/3] overflow-hidden"
+                >
+                  <img src={images[1]} alt="Citrus" className="w-full h-full object-cover" />
+                </motion.div>
+                {/* Tall aspect */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="w-full aspect-[2/3] overflow-hidden"
+                >
+                  <img src={images[3]} alt="Aluminum Can" className="w-full h-full object-cover" />
+                </motion.div>
+              </div>
+
             </div>
           </div>
 

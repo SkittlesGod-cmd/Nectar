@@ -1,216 +1,91 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-
-const flavors = [
-  { color: '#FFE600', accent: '#FFA800', label: 'YUZU SPLASH' },
-  { color: '#FF2E93', accent: '#FF006E', label: 'BERRY BLISS' },
-  { color: '#00F0A8', accent: '#00C98A', label: 'CUCUMBER CRISP' },
-];
+import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((p) => (p + 1) % flavors.length), 3000);
-    return () => clearInterval(t);
-  }, []);
-
-  const { color, accent, label } = flavors[idx];
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative min-h-[100dvh] w-full flex items-center justify-center pt-20 overflow-hidden">
-      {/* Radial glow behind can */}
-      <motion.div
-        className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full blur-[120px] pointer-events-none"
-        animate={{ backgroundColor: `${color}33` }}
-        transition={{ duration: 1.2, ease: 'easeInOut' }}
-      />
-
-      <div className="container mx-auto px-6 h-full flex flex-col lg:flex-row items-center justify-between gap-12 z-10">
-
-        {/* ── Text ── */}
-        <div className="flex-1 flex flex-col items-start justify-center pt-12 lg:pt-0">
+    <section className="relative min-h-[100dvh] w-full flex items-center pt-16 overflow-hidden bg-[radial-gradient(circle_at_center,_var(--nectar-charcoal)_0%,_var(--nectar-dark)_100%)]">
+      <div className="container mx-auto px-6 h-full flex flex-col lg:flex-row items-center gap-12 z-10 py-12 lg:py-0">
+        
+        {/* ── Text Column ── */}
+        <div className="flex-1 flex flex-col items-start justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Floating flavor pill */}
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 border-2 font-bold text-xs tracking-widest uppercase"
-              style={{ borderColor: color, color }}
-            >
-              <span
-                className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: color }}
-              />
-              Now Available — {label}
-            </motion.div>
+            {/* Tag */}
+            <div className="inline-flex items-center px-4 py-1.5 mb-8 border border-white/20 rounded-full font-medium text-xs tracking-widest uppercase text-white/80">
+              Organic · Sparkling · 0 Sugar
+            </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter leading-[0.9] uppercase text-white mb-6">
-              Pure <br />
-              Refreshment. <br />
-              <motion.span
-                animate={{ color }}
-                transition={{ duration: 1, ease: 'easeInOut' }}
-              >
-                Naturally <br /> Elevated.
-              </motion.span>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] text-white mb-6">
+              Pure Refreshment. <br />
+              <span className="text-primary">Naturally Elevated.</span>
             </h1>
 
-            <p
-              className="text-xl md:text-2xl font-medium text-gray-300 mb-10 max-w-lg border-l-4 pl-4 transition-colors duration-700"
-              style={{ borderColor: color }}
-            >
-              0 Sugar · 0 Calories · 100% Real Fruit Extract
+            <p className="text-lg md:text-xl font-medium text-gray-400 mb-12 max-w-lg leading-relaxed">
+              Zero sugar. Zero compromise. 100% real fruit extract. Experience the clarity of flavor.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6">
-              <motion.button
+            <div className="flex flex-col sm:flex-row gap-6 mb-16">
+              <button
                 onClick={() => scrollTo('flavors')}
-                whileHover={{ x: -4, y: -4 }}
-                whileTap={{ x: 2, y: 2 }}
-                className="px-8 py-4 font-bold text-lg uppercase tracking-wide text-black border-2 transition-all"
-                style={{
-                  backgroundColor: color,
-                  borderColor: color,
-                  boxShadow: `6px 6px 0 0 ${color}55`,
-                }}
+                className="px-8 py-4 font-bold text-sm uppercase tracking-wider text-[#0C0C0C] bg-primary transition-all hover:bg-white"
+                style={{ boxShadow: '4px 4px 0 0 rgba(242, 201, 76, 0.3)' }}
               >
                 Shop Flavors
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 onClick={() => scrollTo('our-story')}
-                whileHover={{ x: -4, y: -4 }}
-                whileTap={{ x: 2, y: 2 }}
-                className="px-8 py-4 bg-transparent font-bold text-lg uppercase tracking-wide text-white border-2 border-white transition-all"
-                style={{ boxShadow: '6px 6px 0 0 rgba(255,255,255,0.2)' }}
+                className="px-8 py-4 bg-transparent font-bold text-sm uppercase tracking-wider text-white border border-white/30 transition-all hover:border-white"
               >
                 Explore Ingredients
-              </motion.button>
+              </button>
             </div>
+
+            {/* Scroll Indicator */}
+            <motion.div 
+              className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/50"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowDown className="w-4 h-4" />
+              <span>Scroll to discover</span>
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* ── Can ── */}
-        <div className="flex-1 w-full flex items-center justify-center min-h-[500px]">
-          <motion.div
-            animate={{ y: [-14, 14, -14] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative"
+        {/* ── Photography Column ── */}
+        <div className="flex-1 w-full lg:h-[85vh] flex items-center justify-center lg:justify-end relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-md aspect-[4/5] lg:-mt-8"
           >
-            {/* Outer glow ring */}
-            <motion.div
-              className="absolute inset-0 rounded-[34px] blur-2xl scale-110"
-              animate={{ backgroundColor: `${color}55` }}
-              transition={{ duration: 1.2 }}
+            {/* Main Photo */}
+            <img 
+              src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90&fit=crop" 
+              alt="Nectar sparkling water with fresh citrus" 
+              className="w-full h-full object-cover rounded-lg"
             />
+            
+            {/* Blend Overlay */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-80 pointer-events-none" />
 
-            {/* Can body */}
-            <motion.div
-              className="relative w-64 md:w-80 rounded-[30px] overflow-hidden border-2"
-              style={{ aspectRatio: '3/5' }}
-              animate={{ borderColor: `${color}66` }}
-              transition={{ duration: 1 }}
+            {/* Floating Badge */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="absolute -bottom-6 -left-6 bg-[#0C0C0C] border border-primary px-6 py-3 rounded-full flex items-center justify-center shadow-lg"
             >
-              {/* Full-bleed gradient — no gray caps */}
-              <motion.div
-                className="absolute inset-0"
-                animate={{
-                  background: `linear-gradient(160deg, ${accent} 0%, ${color} 35%, #1a1a2e 75%, #0A0A0A 100%)`,
-                }}
-                transition={{ duration: 1.2, ease: 'easeInOut' }}
-              />
-
-              {/* Specular shine stripe */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%)',
-                  animation: 'shineMove 3.5s ease-in-out infinite',
-                }}
-              />
-
-              {/* Horizontal flavor bands */}
-              <motion.div
-                className="absolute left-0 right-0 h-[3px]"
-                style={{ top: '18%' }}
-                animate={{ backgroundColor: color, opacity: 0.7 }}
-                transition={{ duration: 1 }}
-              />
-              <motion.div
-                className="absolute left-0 right-0 h-[2px]"
-                style={{ top: '22%' }}
-                animate={{ backgroundColor: color, opacity: 0.4 }}
-                transition={{ duration: 1 }}
-              />
-              <motion.div
-                className="absolute left-0 right-0 h-[3px]"
-                style={{ bottom: '18%' }}
-                animate={{ backgroundColor: color, opacity: 0.7 }}
-                transition={{ duration: 1 }}
-              />
-              <motion.div
-                className="absolute left-0 right-0 h-[2px]"
-                style={{ bottom: '22%' }}
-                animate={{ backgroundColor: color, opacity: 0.4 }}
-                transition={{ duration: 1 }}
-              />
-
-              {/* Brand text */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center -rotate-90">
-                <motion.span
-                  className="text-5xl font-black tracking-tighter select-none"
-                  animate={{ color: color === '#FFE600' ? '#0A0A0A' : '#ffffff' }}
-                  transition={{ duration: 0.6 }}
-                  style={{ textShadow: `0 0 40px ${color}99` }}
-                >
-                  NECTAR
-                </motion.span>
-                <motion.span
-                  key={label}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 0.7, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-xs font-bold tracking-[0.3em] uppercase mt-1"
-                  style={{ color: color === '#FFE600' ? '#0A0A0A99' : '#ffffff99' }}
-                >
-                  {label}
-                </motion.span>
-              </div>
-
-              {/* Subtle bubbles inside can */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full"
-                  style={{
-                    width: 4 + (i % 3) * 2,
-                    height: 4 + (i % 3) * 2,
-                    left: `${20 + i * 12}%`,
-                    bottom: -8,
-                    backgroundColor: `${color}cc`,
-                  }}
-                  animate={{ y: [-140 - i * 20, 10], opacity: [0.8, 0] }}
-                  transition={{
-                    duration: 2.5 + i * 0.4,
-                    delay: i * 0.5,
-                    repeat: Infinity,
-                    ease: 'easeOut',
-                  }}
-                />
-              ))}
+              <span className="text-xs font-bold uppercase tracking-widest text-white">100% Organic</span>
             </motion.div>
           </motion.div>
         </div>
