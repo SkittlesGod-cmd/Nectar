@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2, ChevronLeft, ChevronDown, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -478,7 +478,17 @@ interface FAQItemProps {
 
 function FAQItem({ faq, index }: FAQItemProps) {
   const [open, setOpen] = useState(false);
-  
+  const [height, setHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open && contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [open]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -500,18 +510,15 @@ function FAQItem({ faq, index }: FAQItemProps) {
           <ChevronDown className="w-5 h-5" />
         </motion.span>
       </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="px-6 pb-4"
-          >
-            <p className="text-white/60">{faq.answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="overflow-hidden transition-all duration-300 ease-in-out">
+        <div
+          ref={contentRef}
+          className={`px-6 pb-4 transition-all duration-300 ease-in-out ${open ? 'opacity-100' : 'opacity-0'}`}
+          style={{ maxHeight: open ? `${height}px` : '0' }}
+        >
+          <p className="text-white/60">{faq.answer}</p>
+        </div>
+      </div>
     </motion.div>
   );
 }
