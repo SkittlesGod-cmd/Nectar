@@ -9,7 +9,6 @@ import ProductCatalog from '@/pages/ProductCatalog';
 import ProductDetail from '@/pages/ProductDetail';
 import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
-import Contact from '@/pages/Contact';
 
 const queryClient = new QueryClient();
 
@@ -51,7 +50,6 @@ function Router() {
       <Route path="/shop/:id" component={ProductDetail} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} />
-      <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );

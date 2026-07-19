@@ -56,10 +56,6 @@ export default function Navbar() {
               Shop
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
             </Link>
-            <Link href="/contact" className="text-white hover:text-primary transition-colors relative group py-2">
-              Contact
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
-            </Link>
           </nav>
 
           {/* Cart & Mobile Toggle */}
@@ -117,7 +113,6 @@ export default function Navbar() {
               <button onClick={() => scrollTo('flavors')} className="hover:text-primary transition-colors">Flavors</button>
               <button onClick={() => scrollTo('our-story')} className="hover:text-primary transition-colors">Our Story</button>
               <Link href="/shop" className="hover:text-primary transition-colors">Shop</Link>
-              <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
               <Link href="/cart" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <ShoppingCart className="w-6 h-6" />
                 Cart

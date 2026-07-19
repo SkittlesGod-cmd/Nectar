@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
-import { Link } from 'wouter';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -26,17 +25,16 @@ export default function Footer() {
       { label: 'Coming Soon', href: '/shop#upcoming' },
     ],
     help: [
-      { label: 'Contact Us', href: '/contact' },
-      { label: 'FAQ', href: '/contact#faq' },
-      { label: 'Shipping Info', href: '/contact#shipping' },
-      { label: 'Returns', href: '/contact#returns' },
-      { label: 'Wholesale', href: '/contact?subject=wholesale' },
+      { label: 'Shipping Info', href: '/cart#shipping' },
+      { label: 'Returns', href: '/cart#returns' },
+      { label: 'FAQ', href: '/cart#faq' },
+      { label: 'Track Order', href: '/cart#tracking' },
     ],
     company: [
       { label: 'Our Story', href: '#our-story' },
       { label: 'Sustainability', href: '#sustainability' },
-      { label: 'Careers', href: '/contact?subject=careers' },
-      { label: 'Press', href: '/contact?subject=press' },
+      { label: 'Wholesale', href: '/cart#wholesale' },
+      { label: 'Press Kit', href: '/cart#press' },
     ],
   };
 
@@ -172,8 +170,8 @@ export default function Footer() {
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-gray-500 uppercase tracking-widest">
           <p>© 2025 Nectar</p>
           <div className="flex gap-6">
-            <Link href="/contact?subject=privacy" className="hover:text-primary transition-colors">Privacy</Link>
-            <Link href="/contact?subject=terms" className="hover:text-primary transition-colors">Terms</Link>
+            <a href="#privacy" className="hover:text-primary transition-colors">Privacy</a>
+            <a href="#terms" className="hover:text-primary transition-colors">Terms</a>
           </div>
         </div>
       </div>
