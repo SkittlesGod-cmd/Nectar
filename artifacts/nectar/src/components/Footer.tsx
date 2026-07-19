@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
