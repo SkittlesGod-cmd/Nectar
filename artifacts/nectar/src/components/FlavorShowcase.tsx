@@ -9,8 +9,8 @@ const flavors = [
     name: 'Yuzu Citrus',
     color: '#F2C94C',
     price: '$2.99',
-    image: 'https://images.unsplash.com/photo-1547382436-1e198dd30948?w=900&q=90&fit=crop',
-    alt: 'Fresh yuzu and citrus fruits sliced open',
+    image: '/yuzu-citrus.jpg',
+    alt: 'Yuzu citrus fruits on a tree',
     size: 'large'
   },
   {
@@ -27,8 +27,8 @@ const flavors = [
     name: 'Cucumber Mint',
     color: '#2DC653',
     price: '$2.99',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=90&fit=crop',
-    alt: 'Fresh cucumber slices with mint leaves',
+    image: 'https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&q=90&fit=crop',
+    alt: 'Cucumber Mint refreshing drink',
     size: 'small'
   }
 ];
