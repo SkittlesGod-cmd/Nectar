@@ -28,6 +28,12 @@ const steps = [
   }
 ];
 
+const containerV = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
+const cardV = { 
+  hidden: { opacity: 0, y: 44 }, 
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16,1,0.3,1] } } 
+};
+
 export default function Process() {
   return (
     <section className="py-24 md:py-32 bg-[#0C0C0C] border-t border-border relative z-20 overflow-hidden">
@@ -36,7 +42,8 @@ export default function Process() {
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white mb-16 md:mb-24"
         >
           How We Make It
@@ -44,17 +51,23 @@ export default function Process() {
 
         <div className="relative">
           {/* Desktop dashed line */}
-          <div className="hidden md:block absolute top-[3.5rem] left-0 right-0 border-t border-dashed border-white/10 z-0"></div>
+          <div className="hidden md:block absolute top-[2.75rem] left-0 right-0 border-t border-dashed border-white/10 z-0" />
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-6 relative z-10">
+          <motion.div 
+            className="flex flex-col md:flex-row gap-8 md:gap-6 relative z-10"
+            variants={containerV} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {steps.map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                className="flex-1 bg-[#121212] border border-border p-8 relative overflow-hidden group rounded-sm"
+                variants={cardV}
+                whileHover={{ y: -4, borderColor: step.color }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+                className="flex-1 bg-[#121212] border p-6 md:p-8 relative overflow-hidden group rounded-sm"
               >
                 {/* Background Number */}
                 <div 
@@ -85,7 +98,7 @@ export default function Process() {
                 />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </div>

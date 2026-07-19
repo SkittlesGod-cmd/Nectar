@@ -9,7 +9,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -25,8 +25,8 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-[#0C0C0C]/90 backdrop-blur-md border-b border-border shadow-sm' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? 'bg-[#0C0C0C]/80 backdrop-blur-md border-b border-white/5 shadow-sm' : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -43,32 +43,44 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-wide">
-            <button onClick={() => scrollTo('flavors')} className="text-white hover:text-primary transition-colors relative group">
+            <button onClick={() => scrollTo('flavors')} className="text-white hover:text-primary transition-colors relative group py-2">
               Flavors
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
             </button>
-            <button onClick={() => scrollTo('our-story')} className="text-white hover:text-primary transition-colors relative group">
+            <button onClick={() => scrollTo('our-story')} className="text-white hover:text-primary transition-colors relative group py-2">
               Our Story
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
             </button>
-            <button onClick={() => scrollTo('shop')} className="text-white hover:text-primary transition-colors relative group">
+            <button onClick={() => scrollTo('shop')} className="text-white hover:text-primary transition-colors relative group py-2">
               Shop
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
             </button>
           </nav>
 
           {/* Cart & Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <button className="relative p-2 text-white hover:text-primary transition-colors group">
+            <motion.button 
+              className="relative p-2 text-white hover:text-primary transition-colors group"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            >
               <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <motion.span 
-                  key={cartCount}
-                  initial={{ scale: 0.5, y: -10 }}
-                  animate={{ scale: 1, y: 0 }}
-                  className="absolute -top-1 -right-1 bg-primary text-[#0C0C0C] text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full"
-                >
-                  {cartCount}
-                </motion.span>
-              )}
-            </button>
+              <AnimatePresence>
+                {cartCount > 0 && (
+                  <motion.span 
+                    key="cart-count"
+                    initial={{ scale: 0.5, y: -10, opacity: 0 }}
+                    animate={{ scale: 1, y: 0, opacity: 1 }}
+                    exit={{ scale: 0.5, y: -10, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="absolute -top-1 -right-1 bg-primary text-[#0C0C0C] text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full"
+                  >
+                    {cartCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
             <button 
               className="md:hidden p-2 text-white hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(true)}

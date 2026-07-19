@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
 
             <form onSubmit={handleSubmit} className="relative w-full">
-              <div className="flex w-full">
+              <div className="flex flex-col sm:flex-row w-full gap-4 sm:gap-0">
                 <input 
                   type="text"
                   placeholder="Enter your email"
@@ -39,14 +39,17 @@ export default function Footer() {
                     setEmail(e.target.value);
                     if (status === 'error') setStatus('idle');
                   }}
-                  className={`flex-1 bg-transparent border-b ${status === 'error' ? 'border-[#C9184A]' : 'border-gray-600'} text-white p-3 px-0 focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600 rounded-none text-sm`}
+                  className={`flex-1 bg-transparent border-b ${status === 'error' ? 'border-[#C9184A]' : 'border-gray-600'} text-white p-3 px-0 focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600 rounded-none text-sm w-full`}
                 />
-                <button 
+                <motion.button 
                   type="submit"
-                  className="bg-transparent text-primary text-sm font-bold uppercase tracking-wider px-6 border-b border-gray-600 hover:border-primary transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  className="bg-transparent text-primary text-sm font-bold uppercase tracking-wider px-6 py-3 sm:py-0 border-b border-gray-600 sm:hover:border-primary transition-colors w-full sm:w-auto text-left sm:text-center"
                 >
                   Subscribe
-                </button>
+                </motion.button>
               </div>
 
               <AnimatePresence>

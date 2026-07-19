@@ -31,7 +31,8 @@ export default function BrandStory() {
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white mb-10 leading-[1.05]"
             >
               Crafted <br/> From The <br/> Source.
@@ -40,20 +41,23 @@ export default function BrandStory() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={{
                 visible: { transition: { staggerChildren: 0.15 } }
               }}
               className="space-y-6 text-lg md:text-xl text-gray-400 font-medium"
             >
-              <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}}>
+              <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}}>
                 We didn't set out to make another seltzer. We set out to redefine what refreshment feels like. Nectar is born from a precise, 7-step micro-filtration process that strips away impurities, leaving behind water that is shockingly crisp.
               </motion.p>
-              <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}}>
+              <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}}>
                 Then, we infuse. No natural flavors. No "essences." We use whole organic botanicals and fruit extracts sourced from farms we actually visit. The color you see is the color of the earth.
               </motion.p>
               <motion.blockquote 
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 }}} 
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 className="border-l-4 border-primary pl-6 py-2 mt-10"
               >
                 <p className="text-white font-bold text-2xl md:text-3xl uppercase tracking-wide leading-tight">
@@ -65,51 +69,75 @@ export default function BrandStory() {
 
           {/* Visual Grid (Staggered Editorial) */}
           <div className="flex-1 w-full">
-            <div className="grid grid-cols-2 gap-4 md:gap-6 items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 items-center">
               
               <div className="space-y-4 md:space-y-6">
                 {/* Tall aspect */}
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, x: 32 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
-                  className="w-full aspect-[2/3] overflow-hidden"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                  whileHover={{ scale: 1.03 }}
+                  className="w-full aspect-[2/3] overflow-hidden group"
                 >
-                  <img src={images[0].src} alt={images[0].alt} className="w-full h-full object-cover" />
+                  <motion.img 
+                    src={images[0].src} 
+                    alt={images[0].alt} 
+                    className="w-full h-full object-cover" 
+                    transition={{ duration: 0.6, ease: [0.4,0,0.2,1] }}
+                  />
                 </motion.div>
                 {/* Square aspect */}
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, x: 32 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-                  className="w-full aspect-square overflow-hidden"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+                  whileHover={{ scale: 1.03 }}
+                  className="w-full aspect-square overflow-hidden group"
                 >
-                  <img src={images[2].src} alt={images[2].alt} className="w-full h-full object-cover" />
+                  <motion.img 
+                    src={images[2].src} 
+                    alt={images[2].alt} 
+                    className="w-full h-full object-cover" 
+                    transition={{ duration: 0.6, ease: [0.4,0,0.2,1] }}
+                  />
                 </motion.div>
               </div>
 
-              <div className="space-y-4 md:space-y-6 pt-12 md:pt-24">
+              <div className="space-y-4 md:space-y-6 sm:pt-12 md:pt-24">
                 {/* Short aspect */}
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, x: 32 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.30 }}
-                  className="w-full aspect-[4/3] overflow-hidden"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.30 }}
+                  whileHover={{ scale: 1.03 }}
+                  className="w-full aspect-[4/3] overflow-hidden group"
                 >
-                  <img src={images[1].src} alt={images[1].alt} className="w-full h-full object-cover" />
+                  <motion.img 
+                    src={images[1].src} 
+                    alt={images[1].alt} 
+                    className="w-full h-full object-cover" 
+                    transition={{ duration: 0.6, ease: [0.4,0,0.2,1] }}
+                  />
                 </motion.div>
                 {/* Tall aspect */}
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, x: 32 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.45 }}
-                  className="w-full aspect-[2/3] overflow-hidden"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
+                  whileHover={{ scale: 1.03 }}
+                  className="w-full aspect-[2/3] overflow-hidden group"
                 >
-                  <img src={images[3].src} alt={images[3].alt} className="w-full h-full object-cover" />
+                  <motion.img 
+                    src={images[3].src} 
+                    alt={images[3].alt} 
+                    className="w-full h-full object-cover" 
+                    transition={{ duration: 0.6, ease: [0.4,0,0.2,1] }}
+                  />
                 </motion.div>
               </div>
 

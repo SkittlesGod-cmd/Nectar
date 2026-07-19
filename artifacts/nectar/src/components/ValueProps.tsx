@@ -56,24 +56,25 @@ export default function ValueProps() {
             key={i}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-            className="p-12 md:p-16 flex flex-col items-start relative overflow-hidden group hover:bg-[#111] transition-colors"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ backgroundColor: "#111111" }}
+            transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="p-12 md:p-16 flex flex-col items-start relative overflow-hidden group transition-colors"
           >
             {/* Background Number */}
-            <div className="absolute top-4 right-8 text-8xl font-black text-primary opacity-5 select-none transition-transform duration-700 group-hover:scale-110">
+            <div className="absolute top-4 right-8 text-8xl font-black text-primary opacity-5 group-hover:opacity-10 select-none transition-all duration-700 group-hover:scale-110">
               {item.num}
             </div>
 
-            <div className="mb-8 p-3 rounded-full border border-white/10 bg-[#1A1A1A]">
+            <div className="mb-8 p-3 rounded-full border border-white/10 bg-[#1A1A1A] group-hover:border-white/20 group-hover:bg-[#222] transition-colors duration-300">
               {item.icon}
             </div>
             
-            <h3 className="text-xl font-bold mb-3 text-white tracking-wide">
+            <h3 className="text-xl font-bold mb-3 text-white tracking-wide relative z-10">
               {item.title}
             </h3>
             
-            <p className="text-gray-400 leading-relaxed text-sm max-w-[90%]">
+            <p className="text-gray-400 leading-relaxed text-sm max-w-[90%] relative z-10">
               {item.desc}
             </p>
           </motion.div>
