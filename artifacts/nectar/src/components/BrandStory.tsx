@@ -2,10 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&q=90&fit=crop", // Water
-  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=90&fit=crop", // Citrus
-  "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=600&q=90&fit=crop", // Botanicals
-  "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=90&fit=crop"  // Aluminum
+  {
+    src: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=90&fit=crop",
+    alt: "Crystal clear sparkling water with ice"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600&q=90&fit=crop",
+    alt: "Sparkling water being poured over citrus"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?w=600&q=90&fit=crop",
+    alt: "Effervescent water bubbles close-up"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1560508180-03f285f67ded?w=600&q=90&fit=crop",
+    alt: "Refreshing beverage can on ice"
+  }
 ];
 
 export default function BrandStory() {
@@ -58,46 +70,46 @@ export default function BrandStory() {
               <div className="space-y-4 md:space-y-6">
                 {/* Tall aspect */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
                   className="w-full aspect-[2/3] overflow-hidden"
                 >
-                  <img src={images[0]} alt="Crisp Water" className="w-full h-full object-cover" />
+                  <img src={images[0].src} alt={images[0].alt} className="w-full h-full object-cover" />
                 </motion.div>
                 {/* Square aspect */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
                   className="w-full aspect-square overflow-hidden"
                 >
-                  <img src={images[2]} alt="Botanicals" className="w-full h-full object-cover" />
+                  <img src={images[2].src} alt={images[2].alt} className="w-full h-full object-cover" />
                 </motion.div>
               </div>
 
               <div className="space-y-4 md:space-y-6 pt-12 md:pt-24">
                 {/* Short aspect */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.30 }}
                   className="w-full aspect-[4/3] overflow-hidden"
                 >
-                  <img src={images[1]} alt="Citrus" className="w-full h-full object-cover" />
+                  <img src={images[1].src} alt={images[1].alt} className="w-full h-full object-cover" />
                 </motion.div>
                 {/* Tall aspect */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.45 }}
                   className="w-full aspect-[2/3] overflow-hidden"
                 >
-                  <img src={images[3]} alt="Aluminum Can" className="w-full h-full object-cover" />
+                  <img src={images[3].src} alt={images[3].alt} className="w-full h-full object-cover" />
                 </motion.div>
               </div>
 

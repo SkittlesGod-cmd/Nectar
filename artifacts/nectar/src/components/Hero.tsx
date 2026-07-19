@@ -13,46 +13,74 @@ export default function Hero() {
         
         {/* ── Text Column ── */}
         <div className="flex-1 flex flex-col items-start justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center px-4 py-1.5 mb-8 border border-white/20 rounded-full font-medium text-xs tracking-widest uppercase text-white/80"
           >
-            {/* Tag */}
-            <div className="inline-flex items-center px-4 py-1.5 mb-8 border border-white/20 rounded-full font-medium text-xs tracking-widest uppercase text-white/80">
-              Organic · Sparkling · 0 Sugar
-            </div>
+            Organic · Sparkling · 0 Sugar
+          </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] text-white mb-6">
-              Pure Refreshment. <br />
-              <span className="text-primary">Naturally Elevated.</span>
-            </h1>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] text-white mb-6">
+            <motion.span 
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="block"
+            >
+              Pure Refreshment.
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="block text-primary"
+            >
+              Naturally Elevated.
+            </motion.span>
+          </h1>
 
-            <p className="text-lg md:text-xl font-medium text-gray-400 mb-12 max-w-lg leading-relaxed">
-              Zero sugar. Zero compromise. 100% real fruit extract. Experience the clarity of flavor.
-            </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg md:text-xl font-medium text-gray-400 mb-12 max-w-lg leading-relaxed"
+          >
+            Zero sugar. Zero compromise. 100% real fruit extract. Experience the clarity of flavor.
+          </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-6 mb-16">
-              <button
-                onClick={() => scrollTo('flavors')}
-                className="px-8 py-4 font-bold text-sm uppercase tracking-wider text-[#0C0C0C] bg-primary transition-all hover:bg-white"
-                style={{ boxShadow: '4px 4px 0 0 rgba(242, 201, 76, 0.3)' }}
-              >
-                Shop Flavors
-              </button>
-              <button
-                onClick={() => scrollTo('our-story')}
-                className="px-8 py-4 bg-transparent font-bold text-sm uppercase tracking-wider text-white border border-white/30 transition-all hover:border-white"
-              >
-                Explore Ingredients
-              </button>
-            </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row gap-6 mb-16"
+          >
+            <button
+              onClick={() => scrollTo('flavors')}
+              className="px-8 py-4 font-bold text-sm uppercase tracking-wider text-[#0C0C0C] bg-primary transition-all hover:bg-white"
+              style={{ boxShadow: '4px 4px 0 0 rgba(242, 201, 76, 0.3)' }}
+            >
+              Shop Flavors
+            </button>
+            <button
+              onClick={() => scrollTo('our-story')}
+              className="px-8 py-4 bg-transparent font-bold text-sm uppercase tracking-wider text-white border border-white/30 transition-all hover:border-white"
+            >
+              Explore Ingredients
+            </button>
+          </motion.div>
 
-            {/* Scroll Indicator */}
+          {/* Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             <motion.div 
               className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/50"
               animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.3 }}
             >
               <ArrowDown className="w-4 h-4" />
               <span>Scroll to discover</span>
@@ -68,24 +96,30 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-md aspect-[4/5] lg:-mt-8"
           >
-            {/* Main Photo */}
-            <img 
-              src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90&fit=crop" 
-              alt="Nectar sparkling water with fresh citrus" 
-              className="w-full h-full object-cover rounded-lg"
-            />
-            
-            {/* Blend Overlay */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-80 pointer-events-none" />
-
-            {/* Floating Badge */}
             <motion.div 
-              initial={{ opacity: 0, x: -20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="absolute -bottom-6 -left-6 bg-[#0C0C0C] border border-primary px-6 py-3 rounded-full flex items-center justify-center shadow-lg"
+              animate={{ y: [-6, 6, -6] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full h-full relative"
             >
-              <span className="text-xs font-bold uppercase tracking-widest text-white">100% Organic</span>
+              {/* Main Photo */}
+              <img 
+                src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90&fit=crop" 
+                alt="Nectar sparkling water with fresh citrus" 
+                className="w-full h-full object-cover rounded-lg"
+              />
+              
+              {/* Blend Overlay */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-80 pointer-events-none" />
+
+              {/* Floating Badge */}
+              <motion.div 
+                initial={{ opacity: 0, x: -20, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-[#0C0C0C] border border-primary px-6 py-3 rounded-full flex items-center justify-center shadow-lg"
+              >
+                <span className="text-xs font-bold uppercase tracking-widest text-white">100% Organic</span>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>

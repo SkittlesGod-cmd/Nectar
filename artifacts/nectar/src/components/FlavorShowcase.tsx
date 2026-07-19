@@ -9,24 +9,27 @@ const flavors = [
     name: 'Yuzu Citrus',
     color: '#F2C94C',
     price: '$2.99',
-    image: 'https://images.unsplash.com/photo-1576020799627-aeac74d58064?w=900&q=90&fit=crop',
-    size: 'large' // Spans left column on desktop
+    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=90&fit=crop',
+    alt: 'Fresh yuzu and citrus fruits sliced open',
+    size: 'large'
   },
   {
     id: 'berry',
     name: 'Wild Berry',
     color: '#C9184A',
     price: '$2.99',
-    image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=90&fit=crop',
-    size: 'small' // Top right
+    image: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600&q=90&fit=crop',
+    alt: 'Collection of wild berries – blackberries, blueberries, raspberries',
+    size: 'small'
   },
   {
     id: 'cucumber',
     name: 'Cucumber Mint',
     color: '#2DC653',
     price: '$2.99',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=90&fit=crop', // fallback cucumber image
-    size: 'small' // Bottom right
+    image: 'https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&q=90&fit=crop',
+    alt: 'Fresh cucumber slices with mint leaves and water',
+    size: 'small'
   }
 ];
 
@@ -56,12 +59,18 @@ export default function FlavorShowcase() {
             onMouseLeave={() => setActiveFlavor(null)}
           >
             {/* Background Image */}
-            <div className="absolute inset-0">
-              <img 
-                src={flavors[0].image} 
-                alt={flavors[0].name} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                className="w-full h-full"
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+              >
+                <img 
+                  src={flavors[0].image} 
+                  alt={flavors[0].alt} 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              </motion.div>
             </div>
 
             {/* Hover Tint Overlay */}
@@ -109,12 +118,18 @@ export default function FlavorShowcase() {
               >
                 <style>{`.group:hover { border-color: ${flavor.color} !important; }`}</style>
                 {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img 
-                    src={flavor.image} 
-                    alt={flavor.name} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  />
+                <div className="absolute inset-0 overflow-hidden">
+                  <motion.div
+                    className="w-full h-full"
+                    animate={{ scale: [1, 1.03, 1] }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: (i + 1) * 2 }}
+                  >
+                    <img 
+                      src={flavor.image} 
+                      alt={flavor.alt} 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </motion.div>
                 </div>
 
                 {/* Hover Tint Overlay */}

@@ -7,6 +7,8 @@ import ValueProps from '../components/ValueProps';
 import FlavorShowcase from '../components/FlavorShowcase';
 import BrandStory from '../components/BrandStory';
 import Footer from '../components/Footer';
+import Stats from '../components/Stats';
+import Process from '../components/Process';
 import { motion } from 'framer-motion';
 
 const flavorColors: Record<string, string> = {
@@ -49,7 +51,9 @@ export default function Home() {
           <Hero />
           <Marquee />
           <ValueProps />
+          <Stats />
           <FlavorShowcase />
+          <Process />
           <BrandStory />
         </main>
         <Footer />
