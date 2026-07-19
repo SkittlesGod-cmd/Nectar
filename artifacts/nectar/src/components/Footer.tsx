@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, Twitter, MessageCircle } from 'lucide-react';
+import { Instagram, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -16,12 +17,35 @@ export default function Footer() {
     setEmail('');
   };
 
+  const footerLinks = {
+    shop: [
+      { label: 'All Flavors', href: '/shop' },
+      { label: 'Yuzu Citrus', href: '/shop/yuzu' },
+      { label: 'Wild Berry', href: '/shop/berry' },
+      { label: 'Cucumber Mint', href: '/shop/cucumber' },
+      { label: 'Coming Soon', href: '/shop#upcoming' },
+    ],
+    help: [
+      { label: 'Contact Us', href: '/contact' },
+      { label: 'FAQ', href: '/contact#faq' },
+      { label: 'Shipping Info', href: '/contact#shipping' },
+      { label: 'Returns', href: '/contact#returns' },
+      { label: 'Wholesale', href: '/contact?subject=wholesale' },
+    ],
+    company: [
+      { label: 'Our Story', href: '#our-story' },
+      { label: 'Sustainability', href: '#sustainability' },
+      { label: 'Careers', href: '/contact?subject=careers' },
+      { label: 'Press', href: '/contact?subject=press' },
+    ],
+  };
+
   return (
     <footer id="shop" className="bg-[#0C0C0C] pt-24 pb-12 border-t border-border text-white relative z-20">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 mb-16">
           
-          <div className="w-full max-w-lg">
+          <div className="col-span-2 md:col-span-1 lg:col-span-2 max-w-lg">
             <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-6 text-white">
               Stay in the Loop.
             </h2>
@@ -77,7 +101,7 @@ export default function Footer() {
             </form>
           </div>
 
-          <div className="flex flex-col items-start md:items-end gap-6">
+          <div className="col-span-2 md:col-span-1">
             <div className="text-2xl font-bold tracking-tighter text-white mb-2">NECTAR</div>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:border-primary hover:text-primary transition-colors text-gray-400">
@@ -91,14 +115,65 @@ export default function Footer() {
               </a>
             </div>
           </div>
+
+          <nav className="col-span-2 md:col-span-1">
+            <h3 className="font-bold text-sm font-bold uppercase tracking-wider text-white mb-4">Shop</h3>
+            <ul className="space-y-3">
+              {footerLinks.shop.map((link, i) => (
+                <li key={i}>
+                  <Link 
+                    href={link.href} 
+                    className="text-gray-400 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 group"
+                  >
+                    {link.label}
+                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav className="col-span-2 md:col-span-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">Help</h3>
+            <ul className="space-y-3">
+              {footerLinks.help.map((link, i) => (
+                <li key={i}>
+                  <Link 
+                    href={link.href} 
+                    className="text-gray-400 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 group"
+                  >
+                    {link.label}
+                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav className="col-span-2 md:col-span-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">Company</h3>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, i) => (
+                <li key={i}>
+                  <Link 
+                    href={link.href} 
+                    className="text-gray-400 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 group"
+                  >
+                    {link.label}
+                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-gray-500 uppercase tracking-widest">
           <p>© 2025 Nectar</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary transition-colors">Privacy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms</a>
+            <Link href="/contact?subject=privacy" className="hover:text-primary transition-colors">Privacy</Link>
+            <Link href="/contact?subject=terms" className="hover:text-primary transition-colors">Terms</Link>
           </div>
         </div>
       </div>

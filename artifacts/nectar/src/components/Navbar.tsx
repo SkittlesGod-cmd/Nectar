@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useAppContext } from '../App';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'wouter';
 
 export default function Navbar() {
   const { cartCount } = useAppContext();
@@ -51,21 +52,26 @@ export default function Navbar() {
               Our Story
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
             </button>
-            <button onClick={() => scrollTo('shop')} className="text-white hover:text-primary transition-colors relative group py-2">
+            <Link href="/shop" className="text-white hover:text-primary transition-colors relative group py-2">
               Shop
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
-            </button>
+            </Link>
+            <Link href="/contact" className="text-white hover:text-primary transition-colors relative group py-2">
+              Contact
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[0.4,0,0.2,1]" />
+            </Link>
           </nav>
 
           {/* Cart & Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <motion.button 
-              className="relative p-2 text-white hover:text-primary transition-colors group"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            >
-              <ShoppingCart className="w-5 h-5" />
+            <Link href="/cart" className="relative p-2 text-white hover:text-primary transition-colors group">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              >
+                <ShoppingCart className="w-5 h-5" />
+              </motion.div>
               <AnimatePresence>
                 {cartCount > 0 && (
                   <motion.span 
@@ -80,7 +86,7 @@ export default function Navbar() {
                   </motion.span>
                 )}
               </AnimatePresence>
-            </motion.button>
+            </Link>
             <button 
               className="md:hidden p-2 text-white hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(true)}
@@ -110,7 +116,17 @@ export default function Navbar() {
             <div className="flex-1 flex flex-col justify-center items-center gap-12 text-2xl font-bold uppercase tracking-wider">
               <button onClick={() => scrollTo('flavors')} className="hover:text-primary transition-colors">Flavors</button>
               <button onClick={() => scrollTo('our-story')} className="hover:text-primary transition-colors">Our Story</button>
-              <button onClick={() => scrollTo('shop')} className="hover:text-primary transition-colors">Shop</button>
+              <Link href="/shop" className="hover:text-primary transition-colors">Shop</Link>
+              <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+              <Link href="/cart" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <ShoppingCart className="w-6 h-6" />
+                Cart
+                {cartCount > 0 && (
+                  <span className="bg-primary text-[#0C0C0C] text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
             </div>
           </motion.div>
         )}
