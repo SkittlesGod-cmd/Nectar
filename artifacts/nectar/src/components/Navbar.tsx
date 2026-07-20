@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useAppContext } from '../App';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 
 export default function Navbar() {
   const { cartCount } = useAppContext();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -17,9 +18,14 @@ export default function Navbar() {
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
+    const isHome = location === '/';
     const el = document.getElementById(id);
-    if (el) {
+    
+    if (isHome && el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate home with hash
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -35,12 +41,13 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <div 
-            className="text-2xl font-bold tracking-tighter cursor-pointer text-white"
+          <Link 
+            href="/" 
+            className="text-2xl font-bold tracking-tighter text-white hover:text-primary transition-colors"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             NECTAR
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-wide">
